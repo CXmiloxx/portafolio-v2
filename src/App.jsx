@@ -1,4 +1,14 @@
+import Layout from './layout/Layout';
+import AboutPage from './pages/aboutPage/AboutPage';
+import HomePage from './pages/HomePage/HomePage';
+import ProyectsPage from './pages/proyectsPage/proyectsPage';
 
 export default function App() {
-  return <div>App</div>;
+  return (
+    <Layout>
+      <HomePage />
+      <ProyectsPage/>
+      <AboutPage/>
+    </Layout>
+  );
 }
