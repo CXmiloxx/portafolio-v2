@@ -1,0 +1,12 @@
+{
+  "navbar": {
+    "home": "Home",
+    "about": "test",
+    "contact": "Contact"
+  },
+  "language": {
+    "en": "English",
+    "es": "Español",
+    "pt": "Portuguese"
+  }
+}

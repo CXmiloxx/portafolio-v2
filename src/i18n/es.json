@@ -1,0 +1,16 @@
+{
+  "navbar": {
+    "home": "Inicio",
+    "about": "Sobre Nosotros",
+    "contact": "Contactanos"
+  },
+  "language": {
+    "en": "Ingles",
+    "es": "Español",
+    "pt": "Portuges"
+  },
+  "homePage": {
+    "title": "Desarrollador Full Stack & Diseñador UX/UI",
+    "subTitle": "Creando experiencias digitales atractivas y funcionales que destacan en la web moderna."
+  }
+}

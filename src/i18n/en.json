@@ -1,0 +1,16 @@
+{
+  "navbar": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact Us"
+  },
+  "language": {
+    "en": "English",
+    "es": "Español",
+    "pt": "Portuguese"
+  },
+  "homePage": {
+    "title": "Full Stack Developer & UX/UI Designer",
+    "subTitle": "Creating attractive and functional digital experiences that stand out in the modern web."
+  }
+}
