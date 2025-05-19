@@ -1,16 +1,48 @@
 {
   "navbar": {
     "home": "Inicio",
-    "about": "Sobre Nosotros",
-    "contact": "Contactanos"
+    "about": "Sobre Mí",
+    "projects": "Proyectos",
+    "skills": "Habilidades",
+    "contact": "Contacto"
   },
   "language": {
-    "en": "Ingles",
+    "en": "Inglés",
     "es": "Español",
-    "pt": "Portuges"
+    "pt": "Portugués"
   },
   "homePage": {
     "title": "Desarrollador Full Stack & Diseñador UX/UI",
-    "subTitle": "Creando experiencias digitales atractivas y funcionales que destacan en la web moderna."
+    "subTitle": "Creando experiencias digitales atractivas y funcionales que destacan en la web moderna.",
+    "learnMore": "Ver Proyectos"
+  },
+  "about": {
+    "title": "Sobre Mí",
+    "name": "Juan Camilo Guapacha Largo",
+    "description": "Soy un desarrollador Full Stack en formación, egresado del SENA en Pereira, Colombia. Estoy aprendiendo tanto del frontend como del backend y tengo muchas ganas de seguir creciendo profesionalmente. Me apasiona la tecnología y estoy comprometido con crear aplicaciones web funcionales, modernas y útiles, mientras continúo fortaleciendo mis habilidades cada día.",
+    "experience": "Experiencia",
+    "years": "años",
+    "projects": "Proyectos",
+    "clients": "Clientes"
+  },
+  "projects": {
+    "title": "Mis Proyectos",
+    "viewDemo": "Ver Demo",
+    "description": {
+      "1": "Aplicación web de finanzas personales que permite a los usuarios registrar ingresos y gastos, consultar historiales financieros y visualizar un dashboard con métricas clave. Incluye sistema de registro, inicio de sesión y autenticación de usuarios desde el backend con Node.js, además de almacenamiento seguro de datos en base de datos.",
+      "2": "Plataforma de e-commerce desarrollada con React que permite explorar productos mediante un carrusel interactivo, agregar artículos al carrito y gestionar la experiencia de compra. Aunque no incluye pasarela de pagos, ofrece una estructura completa de tienda online con enfoque en la experiencia del usuario.",
+      "3": "Aplicativo web desenvolvido em React que traduz palavras do espanhol para o inglês e reproduz sua pronúncia em áudio. Ideal para quem está aprendendo inglês e deseja aprimorar o vocabulário e a pronúncia de forma interativa."
+    }
+  },
+  "skills": {
+    "title": "Mis Habilidades"
+  },
+  "contact": {
+    "title": "Contacto",
+    "description": "¿Interesado en trabajar juntos? ¡Contáctame para discutir tu proyecto o simplemente para saludar!",
+    "emailMe": "Envíame un Email"
+  },
+  "footer": {
+    "rightsReserved": "Todos los derechos reservados."
   }
 }

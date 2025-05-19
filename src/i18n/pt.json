@@ -1,12 +1,48 @@
 {
   "navbar": {
-    "home": "Home",
-    "about": "test",
-    "contact": "Contact"
+    "home": "Início",
+    "about": "Sobre Mim",
+    "projects": "Projetos",
+    "skills": "Habilidades",
+    "contact": "Contato"
   },
   "language": {
     "en": "English",
     "es": "Español",
-    "pt": "Portuguese"
+    "pt": "Português"
+  },
+  "homePage": {
+    "title": "Desenvolvedor Full Stack & Designer UX/UI",
+    "subTitle": "Criando experiências digitais atraentes e funcionais que se destacam na web moderna.",
+    "learnMore": "Ver Projetos"
+  },
+  "about": {
+    "title": "Sobre Mim",
+    "name": "Juan Camilo Guapacha Largo",
+    "description": "Sou um desenvolvedor Full Stack em formação, graduado pelo SENA em Pereira, Colômbia. Estou aprendendo tanto o desenvolvimento frontend quanto o backend, e estou muito motivado para continuar crescendo profissionalmente. Sou apaixonado por tecnologia e estou comprometido em criar aplicações web funcionais, modernas e úteis, enquanto continuo aprimorando minhas habilidades.",
+    "experience": "Experiência",
+    "years": "anos",
+    "projects": "Projetos",
+    "clients": "Clientes"
+  },
+  "projects": {
+    "title": "Meus Projetos",
+    "viewDemo": "Ver Demo",
+    "description": {
+      "1": "Aplicativo web de finanças pessoais que permite aos usuários registrar entradas e despesas, visualizar o histórico financeiro e analisar os dados por meio de um painel interativo. Possui sistema de cadastro, login e autenticação de usuários implementado no backend com Node.js, além de armazenamento seguro das informações em banco de dados.",
+      "2": "Plataforma de e-commerce desenvolvida com React que permite explorar produtos através de um carrossel interativo, adicionar itens ao carrinho e gerenciar a experiência de compra. Embora não inclua uma integração de pagamento, oferece uma estrutura completa de loja virtual.",
+      "3": "Aplicativo web desenvolvido em React que traduz palavras do espanhol para o inglês e reproduz sua pronúncia em áudio. Ideal para quem está aprendendo inglês e deseja aprimorar o vocabulário e a pronúncia de forma interativa."
+    }
+  },
+  "skills": {
+    "title": "Minhas Habilidades"
+  },
+  "contact": {
+    "title": "Contato",
+    "description": "Interessado em trabalhar juntos? Entre em contato para discutir seu projeto ou apenas para dizer olá!",
+    "emailMe": "Envie-me um Email"
+  },
+  "footer": {
+    "rightsReserved": "Todos os direitos reservados."
   }
 }

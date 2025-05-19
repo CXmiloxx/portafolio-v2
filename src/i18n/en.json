@@ -1,8 +1,10 @@
 {
   "navbar": {
     "home": "Home",
-    "about": "About",
-    "contact": "Contact Us"
+    "about": "About Me",
+    "projects": "Projects",
+    "skills": "Skills",
+    "contact": "Contact"
   },
   "language": {
     "en": "English",
@@ -11,6 +13,36 @@
   },
   "homePage": {
     "title": "Full Stack Developer & UX/UI Designer",
-    "subTitle": "Creating attractive and functional digital experiences that stand out in the modern web."
+    "subTitle": "Creating attractive and functional digital experiences that stand out in the modern web.",
+    "learnMore": "View Projects"
+  },
+  "about": {
+    "title": "About Me",
+    "name": "Juan Camilo Guapacha Largo",
+    "description": "I'm a Full Stack developer in training, a graduate of SENA in Pereira, Colombia. I'm learning both frontend and backend development, and I'm highly motivated to keep growing professionally. I'm passionate about technology and committed to building functional, modern, and useful web applications while continuously improving my skills.",
+    "experience": "Experience",
+    "years": "years",
+    "projects": "Projects",
+    "clients": "Clients"
+  },
+  "projects": {
+    "title": "My Projects",
+    "viewDemo": "View Demo",
+    "description": {
+      "1": "Personal finance web application that allows users to log income and expenses, view financial history, and analyze data through an interactive dashboard. Features user registration, login, and authentication handled by a Node.js backend, with secure data storage in a database.",
+      "2": "E-commerce platform built with React featuring an interactive product carousel, shopping cart functionality, and a full user-friendly browsing experience. While it doesn't include a payment gateway, it provides a complete online store structure.",
+      "3": "Aplicativo web desenvolvido em React que traduz palavras do espanhol para o inglês e reproduz sua pronúncia em áudio. Ideal para quem está aprendendo inglês e deseja aprimorar o vocabulário e a pronúncia de forma interativa."
+    }
+  },
+  "skills": {
+    "title": "My Skills"
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Interested in working together? Contact me to discuss your project or just to say hello!",
+    "emailMe": "Email Me"
+  },
+  "footer": {
+    "rightsReserved": "All rights reserved."
   }
 }
