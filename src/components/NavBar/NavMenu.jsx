@@ -8,9 +8,7 @@ export default function NavMenu() {
   return (
     <ul className="flex flex-col md:flex-row gap-2 md:gap-4 font-medium">
       {navItems.map(([index, item], key) => (
-        console.log(index, item),
-
-        <NavItem key={key} label={item} active={key === 0} />
+        <NavItem key={key} label={item} active={key === 0 } id={index} />
       ))}
     </ul>
   );
