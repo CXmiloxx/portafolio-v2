@@ -1,10 +1,10 @@
 export default function NavItem({ label, id, active = false }) {
   const scrollFunctions = {
-    home: window.scrollToHome,
-    about: window.scrollToAbout,
-    projects: window.scrollToProjects,
-    skills: window.scrollToSkills,
-    contact: window.scrollToContact,
+    home: () => document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' }),
+    about: () => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }),
+    projects: () => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }),
+    skills: () => document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' }),
+    contact: () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }),
   };
 
   const handleClick = () => {
@@ -12,6 +12,7 @@ export default function NavItem({ label, id, active = false }) {
       scrollFunctions[id]();
     }
 
+    // Cerrar el menú móvil si está abierto
     if (window.closeNavMenu) {
       window.closeNavMenu();
     }
@@ -21,13 +22,13 @@ export default function NavItem({ label, id, active = false }) {
     <li>
       <button
         onClick={handleClick}
-        className={`block px-4 py-2 rounded-md transition-all ${
-          active
-            ? "text-white bg-blue-700 md:bg-transparent md:text-blue-700 dark:text-blue-500"
-            : "text-gray-700 hover:bg-gray-100 md:hover:text-blue-600 dark:text-white dark:hover:text-blue-400"
-        }`}
+        className={`relative px-4 py-2 rounded-xl font-medium transition-all duration-300 ${active
+            ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20"
+            : "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800"
+          } group`}
       >
         {label}
+        <span className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-300 group-hover:w-3/4 ${active ? 'w-3/4' : ''}`}></span>
       </button>
     </li>
   );
