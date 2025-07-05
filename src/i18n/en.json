@@ -12,7 +12,7 @@
     "pt": "Portuguese"
   },
   "homePage": {
-    "title": "Full Stack Developer & UX/UI Designer",
+    "title": "Full Stack Developer",
     "subTitle": "Creating attractive and functional digital experiences that stand out in the modern web.",
     "learnMore": "View Projects"
   },
@@ -27,11 +27,20 @@
   },
   "projects": {
     "title": "My Projects",
+    "subtitle": "Explore some of my most outstanding projects and discover my approach to development",
     "viewDemo": "View Demo",
+    "code": "Code",
+    "titles": {
+      "1": "Personal Finances",
+      "2": "Liga Merchs",
+      "3": "English Translator",
+      "4": "StockNeticApp"
+    },
     "description": {
       "1": "Personal finance web application that allows users to log income and expenses, view financial history, and analyze data through an interactive dashboard. Features user registration, login, and authentication handled by a Node.js backend, with secure data storage in a database.",
       "2": "E-commerce platform built with React featuring an interactive product carousel, shopping cart functionality, and a full user-friendly browsing experience. While it doesn't include a payment gateway, it provides a complete online store structure.",
-      "3": "Aplicativo web desenvolvido em React que traduz palavras do espanhol para o inglês e reproduz sua pronúncia em áudio. Ideal para quem está aprendendo inglês e deseja aprimorar o vocabulário e a pronúncia de forma interativa."
+      "3": "Web application developed in React that translates words from Spanish to English and reproduces their pronunciation in audio. Ideal for those learning English who want to improve vocabulary and pronunciation in an interactive way.",
+      "4": "E-commerce platform specialized in the sale of electronic products developed with React. Offers a complete catalog of electronic devices, shopping cart system, advanced search filters and an optimized user experience for technology purchases."
     }
   },
   "skills": {
@@ -40,7 +49,42 @@
   "contact": {
     "title": "Contact",
     "description": "Interested in working together? Contact me to discuss your project or just to say hello!",
-    "emailMe": "Email Me"
+    "emailMe": "Email Me",
+    "form": {
+      "title": "Send me a Message",
+      "subtitle": "Tell me about your project or idea, I'll be happy to help you",
+      "name": "Your full name",
+      "email": "your@email.com",
+      "subject": "Message subject",
+      "message": "Tell me about your project or idea...",
+      "send": "Send Message",
+      "sending": "Sending...",
+      "success": "Message sent successfully!",
+      "error": "Error sending message. Please try again.",
+      "validation": {
+        "name": {
+          "required": "Name is required",
+          "minLength": "Name must be at least 2 characters long",
+          "maxLength": "Name cannot exceed 50 characters",
+          "pattern": "Name can only contain letters and spaces"
+        },
+        "email": {
+          "required": "Email is required",
+          "invalid": "Please enter a valid email address",
+          "maxLength": "Email cannot exceed 100 characters"
+        },
+        "subject": {
+          "required": "Subject is required",
+          "minLength": "Subject must be at least 5 characters long",
+          "maxLength": "Subject cannot exceed 100 characters"
+        },
+        "message": {
+          "required": "Message is required",
+          "minLength": "Message must be at least 10 characters long",
+          "maxLength": "Message cannot exceed 1000 characters"
+        }
+      }
+    }
   },
   "footer": {
     "rightsReserved": "All rights reserved."

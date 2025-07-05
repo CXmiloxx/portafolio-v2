@@ -12,7 +12,7 @@
     "pt": "Português"
   },
   "homePage": {
-    "title": "Desenvolvedor Full Stack & Designer UX/UI",
+    "title": "Desenvolvedor Full Stack",
     "subTitle": "Criando experiências digitais atraentes e funcionais que se destacam na web moderna.",
     "learnMore": "Ver Projetos"
   },
@@ -27,11 +27,20 @@
   },
   "projects": {
     "title": "Meus Projetos",
+    "subtitle": "Explore alguns dos meus projetos mais destacados e descubra minha abordagem ao desenvolvimento",
     "viewDemo": "Ver Demo",
+    "code": "Código",
+    "titles": {
+      "1": "Finanças Pessoais",
+      "2": "Liga Merchs",
+      "3": "Tradutor para Inglês",
+      "4": "StockNeticApp"
+    },
     "description": {
       "1": "Aplicativo web de finanças pessoais que permite aos usuários registrar entradas e despesas, visualizar o histórico financeiro e analisar os dados por meio de um painel interativo. Possui sistema de cadastro, login e autenticação de usuários implementado no backend com Node.js, além de armazenamento seguro das informações em banco de dados.",
       "2": "Plataforma de e-commerce desenvolvida com React que permite explorar produtos através de um carrossel interativo, adicionar itens ao carrinho e gerenciar a experiência de compra. Embora não inclua uma integração de pagamento, oferece uma estrutura completa de loja virtual.",
-      "3": "Aplicativo web desenvolvido em React que traduz palavras do espanhol para o inglês e reproduz sua pronúncia em áudio. Ideal para quem está aprendendo inglês e deseja aprimorar o vocabulário e a pronúncia de forma interativa."
+      "3": "Aplicativo web desenvolvido em React que traduz palavras do espanhol para o inglês e reproduz sua pronúncia em áudio. Ideal para quem está aprendendo inglês e deseja aprimorar o vocabulário e a pronúncia de forma interativa.",
+      "4": "Plataforma de e-commerce especializada na venda de produtos eletrônicos desenvolvida com React. Oferece um catálogo completo de dispositivos eletrônicos, sistema de carrinho de compras, filtros de busca avançados e uma experiência de usuário otimizada para a compra de tecnologia."
     }
   },
   "skills": {
@@ -40,7 +49,42 @@
   "contact": {
     "title": "Contato",
     "description": "Interessado em trabalhar juntos? Entre em contato para discutir seu projeto ou apenas para dizer olá!",
-    "emailMe": "Envie-me um Email"
+    "emailMe": "Envie-me um Email",
+    "form": {
+      "title": "Envie-me uma Mensagem",
+      "subtitle": "Conte-me sobre seu projeto ou ideia, ficarei feliz em ajudá-lo",
+      "name": "Seu nome completo",
+      "email": "seu@email.com",
+      "subject": "Assunto da mensagem",
+      "message": "Conte-me sobre seu projeto ou ideia...",
+      "send": "Enviar Mensagem",
+      "sending": "Enviando...",
+      "success": "Mensagem enviada com sucesso!",
+      "error": "Erro ao enviar mensagem. Tente novamente.",
+      "validation": {
+        "name": {
+          "required": "O nome é obrigatório",
+          "minLength": "O nome deve ter pelo menos 2 caracteres",
+          "maxLength": "O nome não pode exceder 50 caracteres",
+          "pattern": "O nome pode conter apenas letras e espaços"
+        },
+        "email": {
+          "required": "O email é obrigatório",
+          "invalid": "Por favor, insira um email válido",
+          "maxLength": "O email não pode exceder 100 caracteres"
+        },
+        "subject": {
+          "required": "O assunto é obrigatório",
+          "minLength": "O assunto deve ter pelo menos 5 caracteres",
+          "maxLength": "O assunto não pode exceder 100 caracteres"
+        },
+        "message": {
+          "required": "A mensagem é obrigatória",
+          "minLength": "A mensagem deve ter pelo menos 10 caracteres",
+          "maxLength": "A mensagem não pode exceder 1000 caracteres"
+        }
+      }
+    }
   },
   "footer": {
     "rightsReserved": "Todos os direitos reservados."
