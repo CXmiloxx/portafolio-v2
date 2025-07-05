@@ -12,19 +12,25 @@ export default function ButtonLanguage() {
     <div className="flex items-center">
       <div className="relative group">
         <button
-          className="flex items-center gap-2 p-2 rounded-full transition-all duration-300 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          className="flex items-center gap-2 p-3 rounded-xl transition-all duration-300 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm hover:bg-gray-50 dark:hover:bg-gray-700/90 text-gray-900 dark:text-gray-100 shadow-lg hover:shadow-xl border border-gray-200/50 dark:border-gray-700/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transform hover:-translate-y-1"
           aria-label="Cambiar idioma"
         >
-          <Globe className="h-5 w-5 text-blue-500 dark:text-blue-400" />
-          <span className="text-sm font-medium">{language.toUpperCase()}</span>
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg blur-sm opacity-20 group-hover:opacity-40 transition-opacity duration-300"></div>
+            <Globe className="h-5 w-5 text-blue-600 dark:text-blue-400 relative z-10" />
+          </div>
+          <span className="text-sm font-semibold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">{language.toUpperCase()}</span>
         </button>
 
-        <div className="absolute right-0 mt-2 w-40 bg-white dark:bg-gray-800 rounded-md shadow-lg overflow-hidden z-20 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-200 dark:border-gray-700 animate-fade-in">
+        <div className="absolute right-0 mt-3 w-44 bg-white/95 dark:bg-gray-800/95 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden z-20 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-200/50 dark:border-gray-700/50">
           {languages.map(([key, lang]) => (
             <button
               key={key}
               onClick={() => languageChange(key)}
-              className={`w-full text-left px-4 py-2 text-sm transition-colors ${language === key ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 font-medium' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'}`}
+              className={`w-full text-left px-4 py-3 text-sm transition-all duration-300 ${language === key
+                  ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold'
+                  : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50'
+                }`}
             >
               {lang}
             </button>
