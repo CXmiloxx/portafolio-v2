@@ -1,42 +1,72 @@
-import React from 'react'
-import { useLanguage } from '../context/LanguageContext'
+import React, { useState, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Globe } from 'lucide-react'
+import { FaGlobe, FaChevronDown } from 'react-icons/fa'
 
 export default function ButtonLanguage() {
-  const { t } = useTranslation()
-  const { languageChange, language } = useLanguage()
-  const languages = Object.entries(t('language', { returnObjects: true }))
+  const { i18n } = useTranslation()
+  const [isOpen, setIsOpen] = useState(false)
+  const dropdownRef = useRef(null)
+
+  const languages = [
+    { code: 'es', name: 'Español', flag: '🇪🇸' },
+    { code: 'en', name: 'English', flag: '🇺🇸' },
+    { code: 'pt', name: 'Português', flag: '🇧🇷' }
+  ]
+
+  const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0]
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
+
+  const handleLanguageChange = (languageCode) => {
+    i18n.changeLanguage(languageCode)
+    setIsOpen(false)
+  }
 
   return (
-    <div className="flex items-center">
-      <div className="relative group">
-        <button
-          className="flex items-center gap-2 p-3 rounded-xl transition-all duration-300 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm hover:bg-gray-50 dark:hover:bg-gray-700/90 text-gray-900 dark:text-gray-100 shadow-lg hover:shadow-xl border border-gray-200/50 dark:border-gray-700/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transform hover:-translate-y-1"
-          aria-label="Cambiar idioma"
-        >
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg blur-sm opacity-20 group-hover:opacity-40 transition-opacity duration-300"></div>
-            <Globe className="h-5 w-5 text-blue-600 dark:text-blue-400 relative z-10" />
-          </div>
-          <span className="text-sm font-semibold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">{language.toUpperCase()}</span>
-        </button>
+    <div className="relative" ref={dropdownRef}>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center gap-2 px-4 py-2 bg-white/90 dark:bg-black/90 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 shadow-glow border border-gray-200/50 dark:border-gray-700/50 group"
+      >
+        <FaGlobe className="w-4 h-4 text-gray-600 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300" />
+        <span className="text-lg">{currentLanguage.flag}</span>
+        <span className="font-medium text-sm">{currentLanguage.code.toUpperCase()}</span>
+        <FaChevronDown className={`w-3 h-3 text-gray-500 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+      </button>
 
-        <div className="absolute right-0 mt-3 w-44 bg-white/95 dark:bg-gray-800/95 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden z-20 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-200/50 dark:border-gray-700/50">
-          {languages.map(([key, lang]) => (
-            <button
-              key={key}
-              onClick={() => languageChange(key)}
-              className={`w-full text-left px-4 py-3 text-sm transition-all duration-300 ${language === key
-                  ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold'
-                  : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50'
-                }`}
-            >
-              {lang}
-            </button>
-          ))}
+      {isOpen && (
+        <div className="absolute top-full right-0 mt-2 w-48 bg-white/90 dark:bg-black/90 rounded-2xl shadow-glow border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-md z-50 overflow-hidden">
+          <div className="py-2">
+            {languages.map((language) => (
+              <button
+                key={language.code}
+                onClick={() => handleLanguageChange(language.code)}
+                className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800 ${i18n.language === language.code
+                  ? 'text-gray-800 dark:text-gray-200 bg-gray-100 dark:bg-gray-800'
+                  : 'text-gray-700 dark:text-gray-300'
+                  }`}
+              >
+                <span className="text-xl">{language.flag}</span>
+                <span className="font-medium">{language.name}</span>
+                {i18n.language === language.code && (
+                  <div className="ml-auto w-2 h-2 bg-gray-600 dark:bg-gray-400 rounded-full"></div>
+                )}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }

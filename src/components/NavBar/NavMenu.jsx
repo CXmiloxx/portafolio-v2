@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import NavItem from "./NavItem";
 
-export default function NavMenu() {
+export default function NavMenu({ activeSection = 'home' }) {
   const { t } = useTranslation()
 
   const navItems = [
@@ -13,13 +13,13 @@ export default function NavMenu() {
   ];
 
   return (
-    <ul className="flex flex-col md:flex-row gap-2 md:gap-4 font-medium">
-      {navItems.map((item, key) => (
+    <ul className="flex flex-col md:flex-row gap-2 md:gap-3 font-medium">
+      {navItems.map((item) => (
         <NavItem
-          key={key}
+          key={item.id}
           id={item.id}
           label={item.label}
-          active={key === 0}
+          active={activeSection === item.id}
         />
       ))}
     </ul>
