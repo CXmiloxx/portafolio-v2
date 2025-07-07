@@ -2,13 +2,45 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-:root {
-  --animation-duration: 0.3s;
-  --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
-  --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-  --gradient-secondary: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
-  --gradient-accent: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
-  --gradient-success: linear-gradient(135deg, #10b981 0%, #059669 100%);
+/* Import Fira Code Font */
+@font-face {
+  font-family: 'Fira Code';
+  src: url('./assets/font/FiraCodeNerdFont-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Fira Code';
+  src: url('./assets/font/FiraCodeNerdFont-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Fira Code';
+  src: url('./assets/font/FiraCodeNerdFont-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Fira Code';
+  src: url('./assets/font/FiraCodeNerdFont-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Fira Code';
+  src: url('./assets/font/FiraCodeNerdFont-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
 }
 
 @layer base {
@@ -17,7 +49,7 @@
   }
 
   body {
-    @apply bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans transition-colors duration-500 ease-in-out;
+    @apply bg-white dark:bg-black text-gray-800 dark:text-gray-100 font-['Fira_Code'] transition-colors duration-500 ease-in-out;
   }
 
   h1,
@@ -26,7 +58,7 @@
   h4,
   h5,
   h6 {
-    @apply font-bold tracking-tight text-gray-900 dark:text-white;
+    @apply font-['Fira_Code'] font-bold tracking-tight text-gray-900 dark:text-white;
   }
 
   h1 {
@@ -42,7 +74,7 @@
   }
 
   p {
-    @apply text-gray-700 dark:text-gray-300;
+    @apply font-['Fira_Code'] text-gray-700 dark:text-gray-300;
   }
 
   /* Custom scrollbar */
@@ -51,115 +83,57 @@
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-gray-100 dark:bg-gray-800;
+    @apply bg-gray-100 dark:bg-gray-900;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-gradient-to-b from-blue-500 to-blue-600 rounded-full;
+    @apply bg-gray-400 dark:bg-gray-600 rounded-full;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-gradient-to-b from-blue-600 to-blue-700;
-  }
-}
-
-@layer components {
-  .btn {
-    @apply inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 transform hover:-translate-y-1;
-  }
-
-  .btn-primary {
-    @apply bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 focus-visible:ring-blue-500 shadow-lg hover:shadow-xl;
-  }
-
-  .btn-secondary {
-    @apply bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm text-gray-900 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700/90 focus-visible:ring-gray-500 border border-gray-200/50 dark:border-gray-700/50 shadow-lg hover:shadow-xl;
-  }
-
-  .card {
-    @apply rounded-2xl border border-gray-200/50 dark:border-gray-700/50 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-6 shadow-xl transition-all duration-300 hover:shadow-2xl;
-  }
-
-  .input {
-    @apply flex h-12 w-full rounded-xl border border-gray-300 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-3 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-600 dark:text-gray-100 dark:placeholder:text-gray-500 transition-all duration-300;
-  }
-
-  /* Gradient text utility */
-  .gradient-text {
-    @apply bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent;
-  }
-
-  /* Glass morphism effect */
-  .glass {
-    @apply bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50;
-  }
-
-  /* Floating animation */
-  .float {
-    animation: float 3s ease-in-out infinite;
-  }
-
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-
-  /* Pulse glow effect */
-  .pulse-glow {
-    animation: pulse-glow 2s ease-in-out infinite alternate;
-  }
-
-  @keyframes pulse-glow {
-    from {
-      box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
-    }
-    to {
-      box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
-    }
+    @apply bg-gray-500 dark:bg-gray-500;
   }
 }
 
 @layer utilities {
-  .animate-fade-in {
-    animation: fadeIn var(--animation-duration) var(--transition-timing);
-  }
-
+  /* Animations that are actually being used */
   .animate-slide-up {
-    animation: slideUp var(--animation-duration) var(--transition-timing);
+    animation: slideUp 0.5s ease-out;
   }
 
-  .animate-slide-down {
-    animation: slideDown var(--animation-duration) var(--transition-timing);
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
   }
 
-  .animate-slide-left {
-    animation: slideLeft var(--animation-duration) var(--transition-timing);
+  /* Enhanced gradient text utilities */
+  .text-gradient-primary {
+    @apply bg-gradient-to-r from-gray-800 via-gray-700 to-gray-600 dark:from-white dark:via-gray-200 dark:to-gray-300 bg-clip-text text-transparent;
   }
 
-  .animate-slide-right {
-    animation: slideRight var(--animation-duration) var(--transition-timing);
+  .text-gradient-secondary {
+    @apply bg-gradient-to-r from-gray-600 via-gray-500 to-gray-400 dark:from-gray-300 dark:via-gray-400 dark:to-gray-500 bg-clip-text text-transparent;
   }
 
-  .animate-scale-in {
-    animation: scaleIn var(--animation-duration) var(--transition-timing);
+  .text-gradient-accent {
+    @apply bg-gradient-to-r from-gray-700 via-gray-600 to-gray-500 dark:from-gray-200 dark:via-gray-300 dark:to-gray-400 bg-clip-text text-transparent;
   }
 
-  .animate-bounce-gentle {
-    animation: bounceGentle 2s ease-in-out infinite;
+  /* Enhanced background utilities */
+  .bg-glass {
+    @apply bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border border-gray-200/40 dark:border-gray-700/30;
   }
 
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+  .bg-glass-dark {
+    @apply bg-gray-900/95 dark:bg-black/95 backdrop-blur-md border border-gray-800/50 dark:border-gray-900/50;
+  }
+
+  /* Enhanced shadow utilities */
+  .shadow-glow {
+    @apply shadow-lg hover:shadow-xl transition-all duration-500;
+  }
+
+  .shadow-glow-blue {
+    @apply shadow-lg hover:shadow-gray-500/20 transition-all duration-500;
   }
 
   @keyframes slideUp {
@@ -173,103 +147,12 @@
     }
   }
 
-  @keyframes slideDown {
+  @keyframes fadeIn {
     from {
-      transform: translateY(-20px);
       opacity: 0;
     }
     to {
-      transform: translateY(0);
       opacity: 1;
     }
-  }
-
-  @keyframes slideLeft {
-    from {
-      transform: translateX(20px);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes slideRight {
-    from {
-      transform: translateX(-20px);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes scaleIn {
-    from {
-      transform: scale(0.8);
-      opacity: 0;
-    }
-    to {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-
-  @keyframes bounceGentle {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-5px);
-    }
-  }
-
-  /* Gradient backgrounds */
-  .bg-gradient-primary {
-    background: var(--gradient-primary);
-  }
-
-  .bg-gradient-secondary {
-    background: var(--gradient-secondary);
-  }
-
-  .bg-gradient-accent {
-    background: var(--gradient-accent);
-  }
-
-  .bg-gradient-success {
-    background: var(--gradient-success);
-  }
-
-  /* Text gradients */
-  .text-gradient-primary {
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .text-gradient-secondary {
-    background: var(--gradient-secondary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  /* Hover effects */
-  .hover-lift {
-    @apply transition-transform duration-300 hover:-translate-y-2;
-  }
-
-  .hover-glow {
-    @apply transition-shadow duration-300 hover:shadow-lg hover:shadow-blue-500/20;
-  }
-
-  /* Focus styles */
-  .focus-ring {
-    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900;
   }
 }
