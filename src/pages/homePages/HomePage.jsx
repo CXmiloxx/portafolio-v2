@@ -1,56 +1,24 @@
 /* eslint-disable no-unused-vars */
 import { useTranslation } from "react-i18next";
-import portada from "/por.jpg";
+import portada from "/ia.avif";
 import { motion } from "framer-motion";
 import { FaArrowRight, FaDownload, FaGithub, FaLinkedin } from "react-icons/fa";
-import { useEffect, useRef } from "react";
-import AboutPage from "../aboutPage/AboutPage";
-import ProjectsPage from "../projectsPage/ProjectsPage";
-import SkillsPage from "../skillsPages/SkillsPage";
-import ContactPage from "../contactPage/ContactPage";
 
-export default function HomePage() {
+export default function HomePage({
+  homeRef,
+  projectsRef,
+  scrollToSection
+}) {
   const { t } = useTranslation();
 
-  // Referencias para cada sección
-  const homeRef = useRef(null);
-  const aboutRef = useRef(null);
-  const projectsRef = useRef(null);
-  const skillsRef = useRef(null);
-  const contactRef = useRef(null);
-
-  // Función para scroll suave a las secciones
-  const scrollToSection = (ref) => {
-    ref.current.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  // Actualizar NavItem para usar scrollToSection
-  useEffect(() => {
-    // Exponer las funciones de scroll al objeto window para que NavBar pueda acceder a ellas
-    window.scrollToHome = () => scrollToSection(homeRef);
-    window.scrollToAbout = () => scrollToSection(aboutRef);
-    window.scrollToProjects = () => scrollToSection(projectsRef);
-    window.scrollToSkills = () => scrollToSection(skillsRef);
-    window.scrollToContact = () => scrollToSection(contactRef);
-
-    return () => {
-      // Limpiar cuando el componente se desmonte
-      delete window.scrollToHome;
-      delete window.scrollToAbout;
-      delete window.scrollToProjects;
-      delete window.scrollToSkills;
-      delete window.scrollToContact;
-    };
-  }, []);
-
   return (
-    <div className="bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
+    <div className="bg-white dark:bg-black transition-colors duration-500">
       {/* Hero Section */}
       <section ref={homeRef} id="home" className="min-h-screen w-full flex items-center justify-center px-6 py-24 pt-32 relative overflow-hidden">
         {/* Background decorative elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-400/10 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-400/10 rounded-full blur-3xl"></div>
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gray-200/20 dark:bg-gray-800/20 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gray-300/20 dark:bg-gray-700/20 rounded-full blur-3xl"></div>
         </div>
 
         <div className="flex flex-col lg:flex-row items-center justify-between w-full max-w-7xl mx-auto relative z-10">
@@ -66,12 +34,26 @@ export default function HomePage() {
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="w-20 h-1 bg-gradient-to-r from-blue-500 to-blue-600 mx-auto lg:mx-0 mb-6 rounded-full"
+              className="w-20 h-1 bg-gray-600 dark:bg-gray-400 mx-auto lg:mx-0 mb-6 rounded-full"
             ></motion.div>
 
-            <h1 className="mb-6 text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent leading-tight">
+            <h2 className="text-5xl font-bold mb-8 text-gradient-primary relative">
               {t("homePage.title")}
-            </h1>
+              <motion.div
+                animate={{
+                  opacity: [0.5, 1, 0.5],
+                  scale: [0.98, 1, 0.98]
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="absolute inset-0 text-gradient-primary blur-sm"
+              >
+                {t("homePage.title")}
+              </motion.div>
+            </h2>
 
             <p className="text-xl md:text-2xl mb-8 max-w-2xl text-gray-700 dark:text-gray-300 leading-relaxed">
               {t("homePage.subTitle")}
@@ -83,7 +65,7 @@ export default function HomePage() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => scrollToSection(projectsRef)}
-                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-gray-800 dark:bg-gray-200 hover:bg-gray-700 dark:hover:bg-gray-300 text-white dark:text-gray-800 font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
               >
                 {t("homePage.learnMore")} <FaArrowRight className="ml-2" />
               </motion.button>
@@ -96,7 +78,7 @@ export default function HomePage() {
                 className="inline-flex items-center gap-3 px-8 py-4 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm text-gray-800 dark:text-gray-100 font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200/50 dark:border-gray-700/50"
               >
                 <FaDownload className="text-lg" />
-                Descargar CV
+                {t("homePage.downloadCV")}
               </motion.a>
             </div>
 
@@ -111,7 +93,7 @@ export default function HomePage() {
                 href="https://github.com/CXmiloxx"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200/50 dark:border-gray-700/50 text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
+                className="p-3 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200/50 dark:border-gray-700/50 text-gray-700 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-200"
               >
                 <FaGithub size={24} />
               </a>
@@ -119,7 +101,7 @@ export default function HomePage() {
                 href="https://www.linkedin.com/in/camilo-guapacha-a6732b270"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200/50 dark:border-gray-700/50 text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
+                className="p-3 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200/50 dark:border-gray-700/50 text-gray-700 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-200"
               >
                 <FaLinkedin size={24} />
               </a>
@@ -136,9 +118,9 @@ export default function HomePage() {
           >
             <div className="relative">
               {/* Glow effect */}
-              <div className="absolute inset-0 w-80 h-80 md:w-96 md:h-96 bg-blue-400/20 rounded-full blur-2xl animate-pulse"></div>
+              <div className="absolute inset-0 w-80 h-80 md:w-96 md:h-96 bg-gray-300/20 dark:bg-gray-600/20 rounded-full blur-2xl animate-pulse"></div>
 
-              <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden shadow-2xl border-4 border-white/20 dark:border-gray-700/30 transform hover:-translate-y-2 transition-all duration-300 hover:shadow-blue-500/20 backdrop-blur-sm">
+              <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden shadow-2xl border-4 border-white/20 dark:border-gray-700/30 transform hover:-translate-y-2 transition-all duration-300 hover:shadow-gray-500/20 backdrop-blur-sm">
                 <img
                   src={portada}
                   alt="Presentación"
@@ -150,12 +132,12 @@ export default function HomePage() {
               <motion.div
                 animate={{ y: [-10, 10, -10] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full shadow-lg"
+                className="absolute -top-4 -right-4 w-8 h-8 bg-gray-600 dark:bg-gray-400 rounded-full shadow-lg"
               ></motion.div>
               <motion.div
                 animate={{ y: [10, -10, 10] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-r from-indigo-500 to-indigo-600 rounded-full shadow-lg"
+                className="absolute -bottom-4 -left-4 w-6 h-6 bg-gray-500 dark:bg-gray-500 rounded-full shadow-lg"
               ></motion.div>
             </div>
           </motion.div>
@@ -171,28 +153,16 @@ export default function HomePage() {
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="w-6 h-10 border-2 border-blue-500 rounded-full flex justify-center"
+            className="w-6 h-10 border-2 border-gray-600 dark:border-gray-400 rounded-full flex justify-center"
           >
             <motion.div
               animate={{ y: [0, 12, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="w-1 h-3 bg-blue-500 rounded-full mt-2"
+              className="w-1 h-3 bg-gray-600 dark:bg-gray-400 rounded-full mt-2"
             ></motion.div>
           </motion.div>
         </motion.div>
       </section>
-
-      {/* About Section */}
-      <AboutPage aboutRef={aboutRef} />
-
-      {/* Projects Section */}
-      <ProjectsPage projectsRef={projectsRef} />
-
-      {/* Skills Section */}
-      <SkillsPage skillsRef={skillsRef} />
-
-      {/* Contact Section / Footer */}
-      <ContactPage contactRef={contactRef} />
     </div>
   );
 }
