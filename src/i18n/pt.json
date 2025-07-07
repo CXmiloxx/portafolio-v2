@@ -14,10 +14,12 @@
   "homePage": {
     "title": "Desenvolvedor Full Stack",
     "subTitle": "Criando experiências digitais atraentes e funcionais que se destacam na web moderna.",
-    "learnMore": "Ver Projetos"
+    "learnMore": "Ver Projetos",
+    "downloadCV": "Baixar CV"
   },
   "about": {
     "title": "Sobre Mim",
+    "subtitle": "Saiba mais sobre minha experiência, formação e paixão pelo desenvolvimento",
     "name": "Juan Camilo Guapacha Largo",
     "description": "Sou um desenvolvedor Full Stack em formação, graduado pelo SENA em Pereira, Colômbia. Estou aprendendo tanto o desenvolvimento frontend quanto o backend, e estou muito motivado para continuar crescendo profissionalmente. Sou apaixonado por tecnologia e estou comprometido em criar aplicações web funcionais, modernas e úteis, enquanto continuo aprimorando minhas habilidades.",
     "experience": "Experiência",
@@ -61,6 +63,23 @@
       "sending": "Enviando...",
       "success": "Mensagem enviada com sucesso!",
       "error": "Erro ao enviar mensagem. Tente novamente.",
+      "alerts": {
+        "success": {
+          "title": "Mensagem Enviada!",
+          "text": "Sua mensagem foi enviada com sucesso. Entrarei em contato em breve.",
+          "button": "Perfeito!"
+        },
+        "error": {
+          "title": "Erro ao Enviar",
+          "text": "Houve um problema ao enviar sua mensagem. Tente novamente.",
+          "button": "Entendi"
+        },
+        "validation": {
+          "title": "Campos Obrigatórios",
+          "text": "Por favor, preencha todos os campos corretamente.",
+          "button": "Entendi"
+        }
+      },
       "validation": {
         "name": {
           "required": "O nome é obrigatório",

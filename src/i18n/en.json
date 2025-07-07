@@ -14,10 +14,12 @@
   "homePage": {
     "title": "Full Stack Developer",
     "subTitle": "Creating attractive and functional digital experiences that stand out in the modern web.",
-    "learnMore": "View Projects"
+    "learnMore": "View Projects",
+    "downloadCV": "Download CV"
   },
   "about": {
     "title": "About Me",
+    "subtitle": "Learn more about my experience, training and passion for development",
     "name": "Juan Camilo Guapacha Largo",
     "description": "I'm a Full Stack developer in training, a graduate of SENA in Pereira, Colombia. I'm learning both frontend and backend development, and I'm highly motivated to keep growing professionally. I'm passionate about technology and committed to building functional, modern, and useful web applications while continuously improving my skills.",
     "experience": "Experience",
@@ -61,6 +63,23 @@
       "sending": "Sending...",
       "success": "Message sent successfully!",
       "error": "Error sending message. Please try again.",
+      "alerts": {
+        "success": {
+          "title": "Message Sent!",
+          "text": "Your message has been sent successfully. I'll get back to you soon.",
+          "button": "Perfect!"
+        },
+        "error": {
+          "title": "Error Sending",
+          "text": "There was a problem sending your message. Please try again.",
+          "button": "Got it"
+        },
+        "validation": {
+          "title": "Required Fields",
+          "text": "Please complete all fields correctly.",
+          "button": "Got it"
+        }
+      },
       "validation": {
         "name": {
           "required": "Name is required",
