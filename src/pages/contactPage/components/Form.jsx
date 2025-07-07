@@ -4,11 +4,13 @@ import { motion, AnimatePresence } from "framer-motion"
 import { HiUser, HiMail, HiChatAlt2, HiPaperAirplane } from 'react-icons/hi'
 import { FaPaperPlane, FaExclamationTriangle } from 'react-icons/fa'
 import { useTranslation } from 'react-i18next'
+import { useEmail } from '../../../hooks/useEmaill'
+import Swal from 'sweetalert2'
 
 export default function Form() {
   const { t } = useTranslation()
+  const { sendEmail, isLoading, clearError } = useEmail()
   const [formData, setFormData] = useState({
-    name: '',
     email: '',
     subject: '',
     message: ''
@@ -16,16 +18,9 @@ export default function Form() {
 
   const [errors, setErrors] = useState({})
   const [touched, setTouched] = useState({})
-  const [isSubmitting, setIsSubmitting] = useState(false)
 
   // Validation rules
   const validationRules = {
-    name: {
-      required: true,
-      minLength: 2,
-      maxLength: 50,
-      pattern: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/
-    },
     email: {
       required: true,
       maxLength: 100,
@@ -47,10 +42,6 @@ export default function Form() {
   const validateField = (name, value) => {
     const rules = validationRules[name]
     const fieldErrors = []
-
-    if (rules.required && !value.trim()) {
-      fieldErrors.push(t(`contact.form.validation.${name}.required`))
-    }
 
     if (value.trim() && rules.minLength && value.trim().length < rules.minLength) {
       fieldErrors.push(t(`contact.form.validation.${name}.minLength`))
@@ -121,24 +112,105 @@ export default function Form() {
     return isValid
   }
 
+  // Show success alert
+  const showSuccessAlert = () => {
+    Swal.fire({
+      title: t('contact.form.alerts.success.title'),
+      text: t('contact.form.alerts.success.text'),
+      icon: 'success',
+      background: '#1f2937',
+      color: '#f9fafb',
+      confirmButtonColor: '#3b82f6',
+      confirmButtonText: t('contact.form.alerts.success.button'),
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      },
+      customClass: {
+        popup: 'rounded-2xl shadow-2xl',
+        title: 'text-2xl font-bold',
+        confirmButton: 'px-8 py-3 rounded-xl font-medium'
+      }
+    })
+  }
+
+  // Show error alert
+  const showErrorAlert = (error) => {
+    Swal.fire({
+      title: error.message || t('contact.form.alerts.error.title'),
+      text: error.details || t('contact.form.alerts.error.text'),
+      icon: 'error',
+      background: '#1f2937',
+      color: '#f9fafb',
+      confirmButtonColor: '#ef4444',
+      confirmButtonText: t('contact.form.alerts.error.button'),
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      },
+      customClass: {
+        popup: 'rounded-2xl shadow-2xl',
+        title: 'text-2xl font-bold',
+        confirmButton: 'px-8 py-3 rounded-xl font-medium'
+      }
+    })
+  }
+
+  // Show validation error alert
+  const showValidationAlert = () => {
+    Swal.fire({
+      title: t('contact.form.alerts.validation.title'),
+      text: t('contact.form.alerts.validation.text'),
+      icon: 'warning',
+      background: '#1f2937',
+      color: '#f9fafb',
+      confirmButtonColor: '#f59e0b',
+      confirmButtonText: t('contact.form.alerts.validation.button'),
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      },
+      customClass: {
+        popup: 'rounded-2xl shadow-2xl',
+        title: 'text-2xl font-bold',
+        confirmButton: 'px-8 py-3 rounded-xl font-medium'
+      }
+    })
+  }
+
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     if (!validateForm()) {
+      showValidationAlert()
       return
     }
 
-    setIsSubmitting(true)
+    try {
+      const result = await sendEmail(formData.email, formData.subject, formData.message)
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false)
-      setFormData({ name: '', email: '', subject: '', message: '' })
-      setErrors({})
-      setTouched({})
-      alert(t('contact.form.success', '¡Mensaje enviado con éxito!'))
-    }, 2000)
+      if (result.success) {
+        showSuccessAlert()
+        // Reset form
+        setFormData({
+          email: '',
+          subject: '',
+          message: ''
+        })
+        setTouched({})
+        setErrors({})
+        clearError()
+      }
+    } catch (error) {
+      showErrorAlert(error)
+    }
   }
 
   // Check if field has error
@@ -154,7 +226,7 @@ export default function Form() {
     if (touched[fieldName] && !errors[fieldName]) {
       return 'border-green-400/50 focus:border-green-400 hover:border-green-400/70'
     }
-    return 'border-cyan-400/30 focus:border-cyan-400 hover:border-cyan-400/50'
+    return 'border-blue-400/30 focus:border-blue-400 hover:border-blue-400/50'
   }
 
   // Get field background based on state
@@ -165,7 +237,7 @@ export default function Form() {
     if (touched[fieldName] && !errors[fieldName]) {
       return 'bg-gradient-to-r from-green-50/10 via-green-50/10 to-green-50/10 hover:from-green-50/20 hover:via-green-50/20 hover:to-green-50/20'
     }
-    return 'bg-gradient-to-r from-cyan-50/10 via-blue-50/10 to-purple-50/10 hover:from-cyan-50/20 hover:via-blue-50/20 hover:to-purple-50/20'
+    return 'bg-gradient-to-r from-blue-50/10 via-indigo-50/10 to-purple-50/10 hover:from-blue-50/20 hover:via-indigo-50/20 hover:to-purple-50/20'
   }
 
   return (
@@ -184,52 +256,15 @@ export default function Form() {
         viewport={{ once: true }}
         className="text-center mb-12"
       >
-        <h3 className="text-4xl font-bold bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent mb-4">
+        <h3 className="text-4xl font-bold text-gradient-primary mb-4">
           {t('contact.form.title', 'Envíame un Mensaje')}
         </h3>
-        <p className="text-gray-200 text-lg max-w-2xl mx-auto leading-relaxed">
+        <p className="text-gray-700 dark:text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
           {t('contact.form.subtitle', 'Cuéntame sobre tu proyecto o idea, estaré encantado de ayudarte')}
         </p>
       </motion.div>
 
       <form onSubmit={handleSubmit} className="space-y-8">
-        {/* Name Field */}
-        <motion.div
-          initial={{ x: -30, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="relative group"
-        >
-          <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-            <HiUser className={`h-6 w-6 transition-all duration-300 group-hover:scale-110 ${hasError('name') ? 'text-red-400' : touched.name && !errors.name ? 'text-green-400' : 'text-cyan-400'
-              }`} />
-          </div>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            required
-            className={`w-full pl-14 pr-6 py-5 ${getFieldBackground('name')} backdrop-blur-sm border-2 ${getFieldBorderColor('name')} rounded-2xl text-white placeholder-gray-300 focus:outline-none focus:ring-4 focus:ring-cyan-500/30 transition-all duration-500 shadow-lg hover:shadow-xl`}
-            placeholder={t('contact.form.name', 'Tu nombre completo')}
-          />
-          <AnimatePresence>
-            {hasError('name') && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                className="absolute -bottom-6 left-0 flex items-center gap-2 text-red-400 text-sm"
-              >
-                <FaExclamationTriangle className="w-4 h-4" />
-                {errors.name}
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.div>
-
         {/* Email Field */}
         <motion.div
           initial={{ x: -30, opacity: 0 }}
@@ -249,7 +284,7 @@ export default function Form() {
             onChange={handleChange}
             onBlur={handleBlur}
             required
-            className={`w-full pl-14 pr-6 py-5 ${getFieldBackground('email')} backdrop-blur-sm border-2 ${getFieldBorderColor('email')} rounded-2xl text-white placeholder-gray-300 focus:outline-none focus:ring-4 focus:ring-blue-500/30 transition-all duration-500 shadow-lg hover:shadow-xl`}
+            className={`w-full pl-14 pr-6 py-5 ${getFieldBackground('email')} backdrop-blur-sm border-2 ${getFieldBorderColor('email')} rounded-2xl text-gray-800 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-blue-500/30 transition-all duration-500 shadow-glow`}
             placeholder={t('contact.form.email', 'tu@email.com')}
           />
           <AnimatePresence>
@@ -276,7 +311,7 @@ export default function Form() {
           className="relative group"
         >
           <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-            <HiChatAlt2 className={`h-6 w-6 transition-all duration-300 group-hover:scale-110 ${hasError('subject') ? 'text-red-400' : touched.subject && !errors.subject ? 'text-green-400' : 'text-purple-400'
+            <HiChatAlt2 className={`h-6 w-6 transition-all duration-300 group-hover:scale-110 ${hasError('subject') ? 'text-red-400' : touched.subject && !errors.subject ? 'text-green-400' : 'text-blue-400'
               }`} />
           </div>
           <input
@@ -286,7 +321,7 @@ export default function Form() {
             onChange={handleChange}
             onBlur={handleBlur}
             required
-            className={`w-full pl-14 pr-6 py-5 ${getFieldBackground('subject')} backdrop-blur-sm border-2 ${getFieldBorderColor('subject')} rounded-2xl text-white placeholder-gray-300 focus:outline-none focus:ring-4 focus:ring-purple-500/30 transition-all duration-500 shadow-lg hover:shadow-xl`}
+            className={`w-full pl-14 pr-6 py-5 ${getFieldBackground('subject')} backdrop-blur-sm border-2 ${getFieldBorderColor('subject')} rounded-2xl text-gray-800 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-blue-500/30 transition-all duration-500 shadow-glow`}
             placeholder={t('contact.form.subject', 'Asunto del mensaje')}
           />
           <AnimatePresence>
@@ -319,7 +354,7 @@ export default function Form() {
             onBlur={handleBlur}
             required
             rows={8}
-            className={`w-full px-6 py-5 ${getFieldBackground('message')} backdrop-blur-sm border-2 ${getFieldBorderColor('message')} rounded-2xl text-white placeholder-gray-300 focus:outline-none focus:ring-4 focus:ring-cyan-500/30 transition-all duration-500 shadow-lg hover:shadow-xl resize-none`}
+            className={`w-full px-6 py-5 ${getFieldBackground('message')} backdrop-blur-sm border-2 ${getFieldBorderColor('message')} rounded-2xl text-gray-800 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-blue-500/30 transition-all duration-500 shadow-glow resize-none`}
             placeholder={t('contact.form.message', 'Cuéntame sobre tu proyecto o idea...')}
           />
           <AnimatePresence>
@@ -347,13 +382,13 @@ export default function Form() {
         >
           <motion.button
             type="submit"
-            disabled={isSubmitting}
+            disabled={isLoading}
             whileHover={{ scale: 1.03, y: -2 }}
             whileTap={{ scale: 0.97 }}
-            className="w-full flex items-center justify-center gap-4 px-10 py-5 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold text-lg rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 disabled:opacity-50 disabled:cursor-not-allowed group relative overflow-hidden"
+            className="w-full flex items-center justify-center gap-4 px-10 py-5 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold text-lg rounded-2xl shadow-glow-blue transition-all duration-500 disabled:opacity-50 disabled:cursor-not-allowed group relative overflow-hidden"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-            {isSubmitting ? (
+            {isLoading ? (
               <>
                 <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
                 {t('contact.form.sending', 'Enviando...')}
