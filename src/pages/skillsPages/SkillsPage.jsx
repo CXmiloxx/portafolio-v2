@@ -1,4 +1,4 @@
-import { t } from 'i18next'
+import { useTranslation } from 'react-i18next'
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { FaCode, FaDatabase, FaServer, FaDesktop, FaDownload } from 'react-icons/fa';
@@ -43,6 +43,7 @@ const skills = [
 ];
 
 export default function SkillsPage({ skillsRef }) {
+  const { t } = useTranslation();
   return (
     <section ref={skillsRef} id="skills" className="py-24 px-6 bg-white dark:bg-black transition-colors duration-500 relative overflow-hidden">
       {/* Animated background elements */}

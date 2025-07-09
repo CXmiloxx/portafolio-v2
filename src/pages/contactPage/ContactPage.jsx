@@ -1,10 +1,11 @@
-import { t } from 'i18next'
+import { useTranslation } from 'react-i18next'
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaEnvelope, FaDownload } from 'react-icons/fa';
 import Form from './components/Form';
 
 export default function ContactPage({ contactRef }) {
+  const { t } = useTranslation();
   return (
     <section ref={contactRef} id="contact" className="py-24 px-6 bg-white dark:bg-black text-gray-800 dark:text-gray-100 transition-colors duration-500 relative overflow-hidden">
       {/* Background decorative elements */}

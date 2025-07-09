@@ -1,11 +1,13 @@
-import { t } from 'i18next'
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt, FaCode, FaRocket, FaPalette, FaBrain, FaGlobe, FaMobile } from 'react-icons/fa';
 import personalFinances from '/personal-finances.png'
 import Ingles from '/ingles.png'
+import { useTranslation } from 'react-i18next';
 
 export default function ProjectsPage({ projectsRef }) {
+  const { t } = useTranslation()
+  
   const projects = [
     {
       id: 1,
@@ -164,6 +166,13 @@ export default function ProjectsPage({ projectsRef }) {
           </p>
         </motion.div>
 
+        {/* Advertencia sobre servidores gratuitos */}
+        <div className="flex items-center justify-center mb-8">
+          <div className="flex items-center gap-3 bg-yellow-100 dark:bg-yellow-300/20 text-yellow-800 dark:text-yellow-200 px-6 py-3 rounded-xl shadow font-medium text-base">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z" /></svg>
+            <span>{t("projects.serverWarning")}</span>
+          </div>
+        </div>
         {/* Enhanced Projects Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {projects.map((project, index) => (
