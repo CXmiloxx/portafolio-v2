@@ -25,7 +25,9 @@
     "experience": "Experience",
     "years": "years",
     "projects": "Projects",
-    "clients": "Clients"
+    "clients": "Clients",
+    "role": "Full Stack Developer",
+    "passion": "Passionate about technology and innovation"
   },
   "projects": {
     "title": "My Projects",
@@ -43,7 +45,8 @@
       "2": "E-commerce platform built with React featuring an interactive product carousel, shopping cart functionality, and a full user-friendly browsing experience. While it doesn't include a payment gateway, it provides a complete online store structure.",
       "3": "Web application developed in React that translates words from Spanish to English and reproduces their pronunciation in audio. Ideal for those learning English who want to improve vocabulary and pronunciation in an interactive way.",
       "4": "E-commerce platform specialized in the sale of electronic products developed with React. Offers a complete catalog of electronic devices, shopping cart system, advanced search filters and an optimized user experience for technology purchases."
-    }
+    },
+    "serverWarning": "As the projects are hosted on a free server, the initial load of some projects may take a little longer."
   },
   "skills": {
     "title": "My Skills"

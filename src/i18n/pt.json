@@ -25,7 +25,9 @@
     "experience": "Experiência",
     "years": "anos",
     "projects": "Projetos",
-    "clients": "Clientes"
+    "clients": "Clientes",
+    "role": "Desenvolvedor Full Stack",
+    "passion": "Apaixonado por tecnologia e inovação"
   },
   "projects": {
     "title": "Meus Projetos",
@@ -43,7 +45,8 @@
       "2": "Plataforma de e-commerce desenvolvida com React que permite explorar produtos através de um carrossel interativo, adicionar itens ao carrinho e gerenciar a experiência de compra. Embora não inclua uma integração de pagamento, oferece uma estrutura completa de loja virtual.",
       "3": "Aplicativo web desenvolvido em React que traduz palavras do espanhol para o inglês e reproduz sua pronúncia em áudio. Ideal para quem está aprendendo inglês e deseja aprimorar o vocabulário e a pronúncia de forma interativa.",
       "4": "Plataforma de e-commerce especializada na venda de produtos eletrônicos desenvolvida com React. Oferece um catálogo completo de dispositivos eletrônicos, sistema de carrinho de compras, filtros de busca avançados e uma experiência de usuário otimizada para a compra de tecnologia."
-    }
+    },
+    "serverWarning": "Como os projetos estão em um servidor gratuito, é possível que o carregamento inicial de alguns projetos demore um pouco."
   },
   "skills": {
     "title": "Minhas Habilidades"
