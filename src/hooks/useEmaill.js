@@ -11,9 +11,6 @@ export const useEmail = () => {
   const sendEmail = async (from, subject, message) => {
     setIsLoading(true);
     setError(null);
-
-    console.log(to);
-
     try {
       const response = await axios.post(`${url}/api/email/send`, {
         to,
