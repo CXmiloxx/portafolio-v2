@@ -46,7 +46,7 @@ export default function ButtonLanguage() {
       </button>
 
       {isOpen && (
-        <div className="absolute top-full right-0 mt-2 w-48 bg-white/90 dark:bg-black/90 rounded-2xl shadow-glow border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-md z-50 overflow-hidden">
+        <div className="absolute top-full -right-15 mt-2 ml-10 w-48 bg-white/90 dark:bg-black/90 rounded-2xl shadow-glow border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-md z-50 overflow-hidden">
           <div className="py-2">
             {languages.map((language) => (
               <button
